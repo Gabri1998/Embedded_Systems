@@ -1,4 +1,4 @@
-// (C) Amanda Turquis, group: 13 (2024)
+// (C) Amanda Turquis,Ahmed Algabri,David Hong, group: 13 (2024)
 // Work package 1
 // Exercise 1
 // Submission code: XXXXXX (provided by your TA-s)
@@ -17,8 +17,15 @@ int main (int argc, char *argv[]){
     {
         // Print a message to the user to type a number
         printf("\nEnter a number between 1 to 5: ");
-        scanf("%d", &option); // Scan the input
-
+       int validator= scanf("%d", &option); // Scan the input
+       //Check if the user provide a number or a string 
+      if (validator == 0)
+        {
+            printf("Wrong input! Type a digit between 1 and 5!\n");
+            
+            continue;
+        }else{
+       
         // If and else-if statements, after the input is scanned, it prints one the bellow options
         if (option == 1){ 
             printf("\nMessage %d: Hope you are having a nice day :)\n", option);
@@ -40,8 +47,11 @@ int main (int argc, char *argv[]){
         }
         else // Exit the program
         {
-            return 0;
+           printf("\nUncorrect number, please provide a number between 1 to 5:\n ");
+         return 0;
         }
+        }
+        
         
     } while ((option <= 5) && (option >= 1));
     
