@@ -7,11 +7,33 @@
 #include <string.h>
 #include <stdlib.h>
 
+
+ void StrDecToDec(char *str, void *value) {
+  // 12345 str = >> 123 - atoi
+  // strlen(str),
+  char *strCpy = str;
+  int num = 0;
+  while (strCpy != NULL) {
+    if (*strCpy >= '0' && *strCpy <= '9') {
+      num = ((num * 10) + (*strCpy - '0')); // 123
+    } else {
+      break;
+    }
+    strCpy++;
+  }
+  *value = (unsigned int)num;
+}
+
+
 // Main function in the program
 int main (int argc, char *argv[]) {
 
-    int key = atoi(argv[1]); //Converts the input from string to integer
-
+   int key = atoi(argv[1]); //Converts the input from string to integer
+  
+  /*unsigned int num;
+   int *value;
+StrDecToDec(argv[1],value);*/ 
+   
     char message[100]; 
     char encriptedMessage[strlen(message) + 1];
     int i;
