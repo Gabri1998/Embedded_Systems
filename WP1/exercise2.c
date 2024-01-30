@@ -44,9 +44,9 @@ int main(int argc, char *argv[])
   int key = atoi(argv[1]);
 
   // Section to define the variables
-  char message[100];                          // Set a string that can accept 100 characters
-  char encriptedMessage[strlen(message) + 1]; // Set a string for the encrypted message (1 character longer than the input string)
-  int i;                                      // Declare a variable i to itterate through the input message string
+  char message[100];          // Set a string that can accept 100 characters
+  char encriptedMessage[101]; // Set a string for the encrypted message (1 character longer than the input string)
+  int i;                      // Declare a variable i to itterate through the input message string
 
   // A loop to keep running the program
   do
@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
     // Print the encripted message
     printf("\nEncrypted message is: %s\n", encriptedMessage);
 
-  } while (1); // End the program
+  } while (getchar() != EOF); // End the program
 
   // Return 0 to end the program successfully
   return 0;
