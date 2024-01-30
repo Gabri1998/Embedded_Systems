@@ -3,6 +3,7 @@
 // Exercise 3
 // Submission code: XXXXXX (provided by your TA-s)
 
+// Include section for the header files
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -15,6 +16,7 @@
 int main()
 {
 
+    // Section to declare the variables
     int number, guess, tries = 0; // variable declaration and set them to zero
     srand(time(0));               // See the random number generator
     number = rand() % 100 + 1;    // random number between 1 and 100
@@ -104,5 +106,6 @@ int main()
 
     } while (tries <= MAX); // It will run while the input value is not equal to the correct number
 
+    // Return 0 to exit the program successfully
     return 0;
 }
