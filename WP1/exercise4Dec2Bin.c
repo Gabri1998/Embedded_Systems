@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
+// Define section for the constant variables
 #define INDEX 16
 
 // set the bits
