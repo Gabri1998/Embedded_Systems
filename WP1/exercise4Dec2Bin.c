@@ -1,7 +1,7 @@
 
 // (C) Amanda Turquis,Ahmed Algabri,David Hong, group: 13 (2024)
 // Work package 1
-// Exercise 1
+// Exercise 4a
 // Submission code: XXXXXX (provided by your TA-s)
 
 #include <stdio.h>

@@ -19,13 +19,10 @@ void create_random(int *tab ){
 {    
     
     
-    tab[i]= rand() % MAXNUMBER + 0;
+    tab[i]= rand() % MAXNUMBER + 0; // generate the numbers and put them in the array
     
 }
-/*for (int i = 0; i < MAX; i++)
-{
-  printf(" tab(%d):%d \n",i,tab[i]);
-}*/
+
 
 }
 // This function takes the *tab of random numbers
@@ -34,13 +31,13 @@ void create_random(int *tab ){
 
 void count_frequency(int *tab, int *freq ){
 
-  for (int i = 0; i < MAX;i++)
+  for (int i = 0; i < MAX;i++)  // loop and count the frequancy then incerment it
   {
-    int number= tab[i];
+    int number= tab[i]; //storing the number in that index to a var
     
-   //printf("tab numbers: %d \n",number);
-    freq[number]= freq[number]+1;
-    //printf("freq numbers: %d \n",freq[number]);
+   
+    freq[number]= freq[number]+1; // icermenting that number's frequancy
+    
   }
   
 
@@ -50,19 +47,13 @@ void count_frequency(int *tab, int *freq ){
 // and draws a histogram of the values in that frequency table
 void draw_histogram(int *freq ){
 
-   /* for(int i=0;i<MAXNUMBER;i++){
-     printf(" frequancyof(%d ): %d \n",i,freq[i]);
-     
-
-
-
-    }*/
+ // loops through the frequancy and print the i and how much that specific i has frequnted
     for (int i = 0; i < MAXNUMBER; i++) {
         int frequency = freq[i];
-        if (frequency > 0) {
+        if (frequency > 0) { // check if the frequancy is not 0 otherwise it well skip
             printf("%d ", i);
             int j = 1;
-            while (j <= frequency) {
+            while (j <= frequency) { // loop until the last frequncy is printed
                 printf("%c", 'X');
                 j++;
             }
@@ -74,22 +65,17 @@ void draw_histogram(int *freq ){
 
 
 
-// ------ Function definitions ----------
-// ------ Main --------------------------
-// The main entry point for the program
-//
-// If you choose to go for the optional part
-// Please modify it accordingly
+
 void main (void){
 int table[MAX]={0};
 int frequency[MAXNUMBER]={0};
  // random number between 1 and 100
-srand((unsigned int)time(NULL));
-int *tab= table;
-int *freq=frequency;
-create_random(tab);
-count_frequency(tab,freq );
-draw_histogram(freq );
+srand((unsigned int)time(NULL)); // timer to change the numbers
+int *tab= table; // pointer to the table
+int *freq=frequency; // pointer to the frequency
+create_random(tab); // calling the creat random method
+count_frequency(tab,freq ); // calling the frequancy count method
+draw_histogram(freq ); // calling the dawing method
 
 
 
