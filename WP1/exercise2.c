@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 
- void StrDecToDec(char *str, void *value) {
+ void StrDecToDec(char *str,unsigned int *value) {
   // 12345 str = >> 123 - atoi
   // strlen(str),
   char *strCpy = str;
@@ -21,7 +21,7 @@
     }
     strCpy++;
   }
-  *value = (unsigned int)num;
+  *value = num;
 }
 
 

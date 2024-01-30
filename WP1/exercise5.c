@@ -22,6 +22,10 @@ void create_random(int *tab ){
     tab[i]= rand() % MAXNUMBER + 0;
     
 }
+/*for (int i = 0; i < MAX; i++)
+{
+  printf(" tab(%d):%d \n",i,tab[i]);
+}*/
 
 }
 // This function takes the *tab of random numbers
@@ -34,9 +38,9 @@ void count_frequency(int *tab, int *freq ){
   {
     int number= tab[i];
     
-   //printf("tab numbers: %d \n",frequancy);
+   //printf("tab numbers: %d \n",number);
     freq[number]= freq[number]+1;
-   // printf("freq numbers: %d \n",freq[frequancy]);
+    //printf("freq numbers: %d \n",freq[number]);
   }
   
 
@@ -46,7 +50,13 @@ void count_frequency(int *tab, int *freq ){
 // and draws a histogram of the values in that frequency table
 void draw_histogram(int *freq ){
 
-    
+   /* for(int i=0;i<MAXNUMBER;i++){
+     printf(" frequancyof(%d ): %d \n",i,freq[i]);
+     
+
+
+
+    }*/
     for (int i = 0; i < MAXNUMBER; i++) {
         int frequency = freq[i];
         if (frequency > 0) {
@@ -71,8 +81,8 @@ void draw_histogram(int *freq ){
 // If you choose to go for the optional part
 // Please modify it accordingly
 void main (void){
-int table[MAX];
-int frequency[MAXNUMBER];
+int table[MAX]={0};
+int frequency[MAXNUMBER]={0};
  // random number between 1 and 100
 srand((unsigned int)time(NULL));
 int *tab= table;
