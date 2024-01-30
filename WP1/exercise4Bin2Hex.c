@@ -2,21 +2,22 @@
 
 // (C) Amanda Turquis,Ahmed Algabri,David Hong, group: 13 (2024)
 // Work package 1
-// Exercise 1
+// Exercise 4b
 // Submission code: XXXXXX (provided by your TA-s)
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #define INDEX 32
+// set the bits
 int SetBit(int OldValue, int BitNum) {
-  int newValue = (OldValue | (1 << BitNum));
+  int newValue = (OldValue | (1 << BitNum));//compare the value with the shifted bit to the  left using |
   return newValue;
 }
 
-
+// reset the bits
 int ResetBit(int OldValue, int BitNum) {
-  int newValue = (OldValue & (~(1 << BitNum)));
+  int newValue = (OldValue & (~(1 << BitNum)));//compare the value with the shifted bit to the  left  using &/~
   return newValue;
 }
 
@@ -46,10 +47,10 @@ void StrBinToHex(char *str, char *value) {
 
     // if caught 4 bits, handle them as hex value
     if (FourBitCnt == 4) {
-      if (FourBit >= 0 && FourBit <= 9) {
-        value[ArrIdx++] = FourBit + '0';
-      } else if (FourBit >= 10) {
-        value[ArrIdx++] = FourBit - 10 + 'A';
+      if (FourBit >= 0 && FourBit <= 9) { // check if the 4bits between 0 and 9
+        value[ArrIdx++] = FourBit + '0'; // storing the bits to the array then incerment
+      } else if (FourBit >= 10) {  // check if the 4bits is between the 10 and 15
+        value[ArrIdx++] = FourBit - 10 + 'A';  // storing the bits to the array then incerment
       }
 
       FourBit = 0;
@@ -59,16 +60,16 @@ void StrBinToHex(char *str, char *value) {
 
   // If there are remaining bits, handle them
   if (FourBitCnt > 0) {
-    if (FourBit >= 0 && FourBit <= 9) {
-      value[ArrIdx++] = FourBit + '0';
-    } else if (FourBit >= 10) {
-      value[ArrIdx++] = FourBit - 10 + 'A';
+    if (FourBit >= 0 && FourBit <= 9) { // check if the 4bits between 0 and 9
+      value[ArrIdx++] = FourBit + '0';  // storing the bits to the array then incerment
+    } else if (FourBit >= 10) {  // check if the 4bits is between the 10 and 15
+      value[ArrIdx++] = FourBit - 10 + 'A';  // storing the bits to the array then incerment
     }
   }
-// Reverse the hex string in-place before adding the null terminator
+// Reverse the hex string in-place 
   for (int start = 0, end = ArrIdx - 1; start < end; start++, end--) {
-    char temp = value[start];
-    value[start] = value[end];
+    char temp = value[start]; 
+    value[start] = value[end];  // the swaping happens here
     value[end] = temp;
   }
   // Add null terminator at the end of the hex string
@@ -80,22 +81,27 @@ void StrBinToHex(char *str, char *value) {
 int main (int argc,char *argv[]){
 unsigned int x;
   
-  char output[INDEX] = {0};
+  char output[INDEX] = {0}; // store the output
 
 
   if (argc<=1){
 printf("No argument provided for more information use \'-h\'\n");
+return 2;
 //check if the user pass more than one argument
 }else if(argc!=2){
 printf("Only one Argument expected for more information use \'-h\' \n");
+
+return 2;
 }else{
 // Using external library to check if the user pass -h for help
 
 if(strcmp(argv[1],"-h")==0){
 printf("you should pass the name of the file then the first argment should be a digit\n");
-}else{
 
+}
+else{
 
+// calling the method that convert to hexa
   StrBinToHex(argv[1], output);
   printf("hex:%s\n", output);
 }
