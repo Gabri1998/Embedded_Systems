@@ -83,7 +83,7 @@ unsigned int x;
   
   char output[INDEX] = {0}; // store the output
 
-
+scanf("%s",)
   if (argc<=1){
 printf("No argument provided for more information use \'-h\'\n");
 return 2;

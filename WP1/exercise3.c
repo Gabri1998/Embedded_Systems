@@ -14,10 +14,10 @@
 // Main function in the program
 int main (){
 
-    int number, guess, tries = 0;
+    int number, guess, tries = 0; //variable declaration and set them to zero
     srand(time(0)); // See the random number generator
     number = rand() % 100 + 1; // random number between 1 and 100
-    int option;
+    int option; // variable declaration
 
     printf("\nWelcome to:\nGuess the Number!!\n\n");
 
@@ -27,11 +27,11 @@ int main (){
         //Assign the input value to the variable guess
         int validator = scanf("%d", &guess);
 
-        if (validator == 0)
+        if (validator == 0) // if the user input an invalid value
         {
             printf("Wrong input! Type a digit between 1 and 100!\n");
-            tries = 0;
-            break;
+            tries = 0; // tries are set zero
+            break; // game ends
         }
             
         // If the user cannot guess the correct in 10 tries, prints a message and the correct number
@@ -40,19 +40,19 @@ int main (){
 
             printf("\nThe game has ended. For another round, press 1 or to exit the game, press 0!\n");
             
-            scanf("%d", &option);
-            if (option == 0)
+            scanf("%d", &option); //scan the input value when the user wants to exit or continue the game
+            if (option == 0) // if option is zero, it ends the game
             {
-                tries = MAX;
+                tries = MAX; // tries has reached the maximum number
                 break; // it breaks this block
         
             }
-            else if(option == 1)
+            else if(option == 1) // if option is number one, resets the tries to zero and restart the game
             {
-                tries = 0;
+                tries = 0; // tries is reset to zero
                 srand(time(0)); // See the random number generator
                 number = rand() % 100 + 1; // random number between 1 and 100
-                continue;
+                continue; // re-start the game 
             }
         }
         
@@ -74,25 +74,27 @@ int main (){
             printf("Too low!\n\n");
         }
 
-        else if (guess == number)
+        else if (guess == number) // the guessed number is equal to random number
         {
             printf("\nCorrect! You got it in %d guesses!\n", tries);
 
             printf("\nThe game has ended. For another round, press 1 or to exit the game, press 0!\n");
             
             scanf("%d", &option);
+
+            //set of options if user wants to end the game or restart when they exceed the max number of tries
             if (option == 0)
             {
-                tries = MAX;
+                tries = MAX; // tries is equal to maximum of 10
                 break; // it breaks this block
         
             }
-            else if(option == 1)
+            else if(option == 1) // if the user wants to continue the game
             {
-                tries = 0;
+                tries = 0; // tries is reset to zero
                 srand(time(0)); // See the random number generator
                 number = rand() % 100 + 1; // random number between 1 and 100
-                continue;
+                continue; // re-start the game again
             }
             
         }

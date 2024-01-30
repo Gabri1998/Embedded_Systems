@@ -40,6 +40,23 @@ void StrDecToDec(char *str, unsigned int *value)
 // Main function in the program
 int main(int argc, char *argv[])
 {
+
+     if (argc<=1){
+printf("No argument provided for more information use \'-h\'\n");
+return 2;
+//check if the user pass more than one argument
+}else if(argc!=2){
+printf("Only one Argument expected for more information use \'-h\' \n");
+
+return 2;
+}else{
+// Using external library to check if the user pass -h for help
+
+if(strcmp(argv[1],"-h")==0){
+printf("you should pass the name of the file then the first argment should be a digit\n");
+
+}
+else{
   // Converts the input from string to integer
   int key = atoi(argv[1]);
 
@@ -89,8 +106,8 @@ int main(int argc, char *argv[])
     // Print the encripted message
     printf("\nEncrypted message is: %s\n", encriptedMessage);
 
-  } while (1); // End the program
-
+  } while (getchar() != EOF); // End the program
+}
   // Return 0 to end the program successfully
-  return 0;
+  return 0;}
 }

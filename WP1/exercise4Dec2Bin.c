@@ -46,16 +46,6 @@ void StrDecToDec(char *str, unsigned int *value) {
 
 
 
-
-
-
-
-
-
-
-
-
-
 void DecToBin(unsigned int var, char *value) {
  
   int ArrIdx = 0; // array index
