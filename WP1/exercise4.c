@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#define INDEX 16
+#define INDEX 32
 int SetBit(int OldValue, int BitNum) {
   int newValue = (OldValue | (1 << BitNum));
   return newValue;
@@ -163,16 +163,18 @@ int main (int argc,char *argv[]){
 unsigned int x;
   char val[INDEX] = {0};
   char output[INDEX] = {0};
- if (argc != 2)
-    {
-        printf("Usage: %s <number>\n", argv[0]);
-        return 1;
-    }
-    // check if the user wants to see the help message
-    if(strcmp(argv[1], "-h") == 0){
-        printf("Usage: %s <number>\n", argv[0]);
-        return 0;
-    }
+ 
+  if (argc<=1){
+printf("No argument provided for more information use \'-h\'\n");
+//check if the user pass more than one argument
+}else if(argc!=2){
+printf("Only one Argument expected for more information use \'-h\' \n");
+}else{
+// Using external library to check if the user pass -h for help
+
+if(strcmp(argv[1],"-h")==0){
+printf("you should pass the name of the file then the first argment should be a digit\n");
+}else{
 
    StrDecToDec(argv[1], &x);
    DecToBin(x,val);
@@ -180,9 +182,9 @@ unsigned int x;
   StrBinToHex(val, output);
   printf("hex:%s\n", output);
   
-  
+}
    
-  
+}
   
   
    
