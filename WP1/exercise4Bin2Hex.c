@@ -5,9 +5,12 @@
 // Exercise 4b
 // Submission code: XXXXXX (provided by your TA-s)
 
+// Include section for the header files
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
+// Define section for the constant variables
 #define INDEX 32
 // set the bits
 int SetBit(int OldValue, int BitNum)
