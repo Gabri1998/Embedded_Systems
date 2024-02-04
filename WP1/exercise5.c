@@ -1,12 +1,12 @@
 // (C) Amanda Turquis,Ahmed Algabri,David Hong, group: 13 (2024)
 // Work package 1
 // Exercise 5
-// Submission code: XXXXXX (provided by your TA-s)
+// Submission code: 941551 (provided by your TA-s)
 
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-#define MAX 100      // Defines the maximum number of the values in the table
+#define MAX 50       // Defines the maximum number of the values in the table
 #define MAXNUMBER 20 // Defines the maximum value of random numbers
 
 // ------ Function declarations ----------

@@ -3,7 +3,7 @@
 // (C) Amanda Turquis,Ahmed Algabri,David Hong, group: 13 (2024)
 // Work package 1
 // Exercise 4b
-// Submission code: XXXXXX (provided by your TA-s)
+// Submission code: 941551 (provided by your TA-s)
 
 // Include section for the header files
 #include <stdio.h>
@@ -33,31 +33,26 @@ void StrBinToHex(char *str, char *value)
 {
   // Declare the variables
   short FourBit = 0;  // number var to store 4 bit to Set and Reset
+  long maxBit=0;
+  int size= strlen(str) - 1;
   int FourBitCnt = 0; // indicator for 4 bit
   int ArrIdx = 0;     // array index
 
   // loop form right to left , detect NULL value and stop to zero index
-  for (int idxSZ = strlen(str) - 1; (idxSZ >= 0) && (str[idxSZ] != '\0');
-       idxSZ--)
-  {
+  for (int idxSZ = size; (idxSZ >= 0) && (str[idxSZ] != '\0');
+       idxSZ--) {
 
     // Set and Reset every 4 Bits & collect 4 Bits
     if (str[idxSZ] == '0')
     {
       // Reset bit number in var FourBit
       FourBit = ResetBit(FourBit, FourBitCnt);
-    }
-
-    // If the str[idxSZ] is equal to 1
-    else if (str[idxSZ] == '1')
-    {
+      maxBit = ResetBit(maxBit, size-idxSZ);
+    } else if (str[idxSZ] == '1') {
       // Set bit number in var FourBit
       FourBit = SetBit(FourBit, FourBitCnt);
-    }
-    // Other case
-    else
-    {
-      // Break out of the program
+      maxBit = SetBit(maxBit, size-idxSZ);
+    } else {
       break;
     }
 
@@ -105,52 +100,47 @@ void StrBinToHex(char *str, char *value)
     value[start] = value[end]; // the swaping happens here
     value[end] = temp;         // set the temp value to the value[end]
   }
+  printf("Maxbit:%lx\n",maxBit);
   // Add null terminator at the end of the hex string
   value[ArrIdx] = '\0';
+  
 }
 
-// Start of the main function
+
+
+
 int main(int argc, char *argv[])
 {
-  // Declare the variables
-  unsigned int x; // Declare a variable x
+    long binary;
+    int remainder;
+    int dec = 0;
+    char *eptr;
+    char output[INDEX];
+    char input[INDEX];
 
-  char output[INDEX] = {0}; // store the output
+    // Check if binary provided via arguement parameter or as input parameter.
+    // If binary is provided but not a number ask for a number via input until received one.
 
-  // If the argument is less or equal to 1
-  if (argc <= 1)
-  {
-    printf("No argument provided for more information use \'-h\'\n");
-    // Return 2 to exit with failure
-    return 2;
-    // check if the user pass more than one argument
-  }
-  // If the argument is not 2
-  else if (argc != 2)
-  {
-    printf("Only one Argument expected for more information use \'-h\' \n");
 
-    // Return with 2 to exit the program
-    return 2;
-  }
+    if(argc < 1 && strcmp(argv[1], "-h") == 0) {
+        printf("This program is used to convert a binary number to a hexdecimal number.\nRun this program with a binary number as arguement or enter one when asked.\nIt is possible to run this program with dec2bin outut using dec2bin number | bin2hex.");
+    } else if (argc <2 ) {
+        
+            
+            scanf("%s", input);
+        
+    } else if (argc==2) {
+       
 
-  // Other cases
-  else
-  {
-    // Using external library to check if the user pass -h for help
-
-    // If the first argument is equal to -h
-    if (strcmp(argv[1], "-h") == 0)
-    {
-      printf("you should pass the name of the file then the first argment should be a digit\n");
+        sscanf(argv[1],"%s", input);
+       
     }
-    // Other cases
-    else
-    {
 
-      // calling the method that convert to hexa
-      StrBinToHex(argv[1], output);
-      printf("hex:%s\n", output);
-    }
-  }
+  
+    StrBinToHex(input,output);  
+
+    // Print as hexadecimal
+    printf("%s\n", output);
+    //printf("%d", dec);
+    return 0;
 }

@@ -2,7 +2,7 @@
 // (C) Amanda Turquis,Ahmed Algabri,David Hong, group: 13 (2024)
 // Work package 1
 // Exercise 4a
-// Submission code: XXXXXX (provided by your TA-s)
+// Submission code: 941551 (provided by your TA-s)
 
 // Include section for the header files
 #include <stdio.h>
@@ -101,36 +101,41 @@ int main(int argc, char *argv[])
 
   // Set the first element as a 0
   char output[INDEX] = {0};
+ 
+  if (argc<=1){
+printf("No argument provided for more information use \'-h\'\n");
+return 2;
+//check if the user pass more than one argument
+}else if(argc!=2){
+printf("Only one Argument expected for more information use \'-h\' \n");
 
-  // If the argument is less or equal to 1
-  if (argc <= 1)
-  {
-    printf("No argument provided for more information use \'-h\'\n");
-    // Return 2 to exit with failure
-    return 2;
-    // check if the user pass more than one argument
-  }
-  // If the argument is not 2
-  else if (argc != 2)
-  {
-    printf("Only one Argument expected for more information use \'-h\' \n");
-    // Return 2 to exit with failure
-    return 2;
-  }
-  else
-  {
-    // Using external library to check if the user pass -h for help
-    if (strcmp(argv[1], "-h") == 0)
-    {
-      printf("you should pass the name of the file then the first argment should be a digit\n");
-    }
-    else
-    {
-      // calling the methods
-      // change the string to int
-      StrDecToDec(argv[1], &x);
-      // convert the Decimal to Binary
-      DecToBin(x, output);
-    }
-  }
+return 2;
+}else{
+// Using external library to check if the user pass -h for help
+
+if(strcmp(argv[1],"-h")==0){
+printf("you should pass the name of the file then the first argment should be a digit\n");
+
+}
+else{
+   // calling the methods
+   // change the string to int
+   StrDecToDec(argv[1], &x);
+   //convert the Decimal to Binary
+   DecToBin(x,output);
+  
+  printf("%s\n",output);
+  
+  
+}
+   
+}
+  
+  
+   
+   
+   
+   
+    
+    
 }
