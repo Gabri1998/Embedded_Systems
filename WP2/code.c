@@ -12,18 +12,7 @@
 #include <string.h>
 
 void checkValue(char val, char start, char end) {
-  // we just need to change it to return int if the exit(0); considered a bad practice
-  //   int status = 0;
-  //   if (val >= start && val <= end) {
-  //     // correct
-  //     // packingvalue(val, argidx);
-  //     status = 0;
-  //   } else {
-  //     printf("you entered invalid value\n");
-  //     exit(0);
-  //     status = 1;
-  //     // fail
-  //   }
+  
 
   if (!(val >= start && val <= end)) { // chck if the value is not  in the range 
     printf("you entered invalid value, range: <0..1> <0..4> <0..2> <0..1> <0..1>\n");
