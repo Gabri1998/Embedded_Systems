@@ -37,6 +37,9 @@ int main(int argc, char *argv[])
         act_post = act_post->next;
     }
 
+    printf("\n");
+
+
     // Print new list
     int newNode = 40;
     head = add_first(head, newNode); // call the function to add a new record at the beginning
@@ -49,6 +52,7 @@ int main(int argc, char *argv[])
         act_post = act_post->next; // move to the next node in the list
         
     }
+    printf("\n");
 
     // --- Free the allocated memory ---
     while ((act_post = head) != NULL)
@@ -58,6 +62,8 @@ int main(int argc, char *argv[])
     }
     
     return 0;
+
+    printf("\n");
 
 }
 // ==== End of main ======================================
