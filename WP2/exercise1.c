@@ -1,61 +1,56 @@
-// (C) Amanda Turquis,Ahmed Algabri,David Hong, group: 13 (2024)
-// Work package 2
-// Exercise 1
-// Submission code: XXXXXX (provided by your TA-s)
-
 // Include section for the header files
 #include <stdio.h>
 #include <stdlib.h>
 
-// Define the maximum size of the field
+// Define the constant values
 #define MAX 99
 
-// Declare the enum for the directions
+// Enum for the directions (N, E, S, W)
 enum DIRECTION
 {
-    N, // North is set as 0
-    E, // East is set as 1
-    S, // South is set as 2
-    W  // West is set as 3
+    N, // = 0
+    E, // = 1
+    S, // = 2
+    W  // = 3
 };
 
-// Define the structure of the robot
+// Define the structure for the robot
 typedef struct
 {
-    int xpos;           // X Position of the robot
-    int ypos;           // Y position of the robot
+    int xpos;           // xPosition for the robot
+    int ypos;           // yPosition for the robto
     enum DIRECTION dir; // Direction of the robot
-} ROBOT;                // Declare the structure as a ROBOTs
+} ROBOT;
 
-// A function to move the robot (Uses the pointer that addresses the robot in the main function)
+// Function to move the robot
 void move(ROBOT *robot)
 {
-    // Switch statement to move the robot based on the direction
+    // Switch case based on the robot's direction
     switch (robot->dir)
     {
-    // Case when the direction of the Robot is North
+    // Heading North
     case 0:
-        // Increase the Y position of the Robot
+        // Increase the y position of the robot
         robot->ypos++;
-        // Break out of the switch loop
+        // Break out of the loop
         break;
-    // Case when the direction of the Robot is East
+    // Heading East
     case 1:
-        // Increase the X position of the Robot
+        // Increase the x position of the robot
         robot->xpos++;
-        // Break out of the switch loop
+        // Break out of the loop
         break;
-    // Case when the direction of the Robot is South
+    // Heading South
     case 2:
-        // Decrease the Y position of the Robot
+        // Decrease the y position of the robot
         robot->ypos--;
-        // Break out of the switch loop
+        // Break out of the loop
         break;
-    // Case when the direction of the Robot is West
+    // Heading West
     case 3:
-        // Decrease the X position of the Robot
+        // Decrease the x position of the robot
         robot->xpos--;
-        // Break out of the switch loop
+        // Break out of the loop
         break;
     }
 
@@ -64,35 +59,35 @@ void move(ROBOT *robot)
     printf("Direction: %d \n", robot->dir);
 }
 
-// A function to turn the robot
+// Function to turn the obot
 void turn(ROBOT *robot)
 {
-    // A switch loop to rotate the robot based on their initial direction
+    // Switch loop based on the direction of the robot
     switch (robot->dir)
     {
-    // Case when the direction of the robot is North
+    // Robot facing North
     case 0:
-        // Change the direction of the robot to East
+        // Set the robot's direction as East
         robot->dir = 1;
-        // Break out of the switch loop
+        // Break out of the loop
         break;
-    // Case when the direction of the robot is East
+    // Robot facing East
     case 1:
-        // Change the direction of the robot to South
+        // Set the robot's direction as South
         robot->dir = 2;
-        // Break out of the switch loop
+        // Break out of the loop
         break;
-    // Case when the direction of the robot is South
+    // Robot facing South
     case 2:
-        // Change the direction of the robot to West
+        // Set the robot's direction as West
         robot->dir = 3;
-        // Break out of the switch loop
+        // Break out of the loop
         break;
-    // Case when the direction of the robot is West
+    // Robot facing West
     case 4:
-        // Change the direction of the robot to North
+        // Set the robot's direction as North
         robot->dir = 0;
-        // Break out of the switch loop
+        // Break out of the loop
         break;
     }
     printf("X Position: %d \n", robot->xpos);
@@ -100,81 +95,86 @@ void turn(ROBOT *robot)
     printf("Direction: %d \n", robot->dir);
 }
 
-// Initialize the main function
+// Start of the main function
 int main()
 {
     // Variable declarations
-    ROBOT robots[1];  // Declare the array of robots(Only one since we create just a single robot)
-    int startPosX;    // The starting x position of the robot
-    int startPosY;    // The starting y position of the robot
-    char userRequest; // The request of the user (between m and t)
+    ROBOT robots[1];  // Declare the robot
+    int startPosX;    // Starting x position of the robot
+    int startPosY;    // Starting y position of the robot
+    char userRequest; // Selected option of the user
 
-    // A do while loop to run the program until the user presses EOF.
+    // While loop that runs until the user exits
     do
     {
         printf("Define the x coordinate of the starting position: ");
-        // Store the starting position X value at startPosX
+        // Scan for the starting X position of the robot
         scanf("%d", &startPosX);
-
-        // If the starting position value is larger than 99 or smaller than 0, exit the program
-        if (startPosX > MAX || startPosX < 0)
-        {
-            printf("Error: Starting position should be between 0 and 99 \n");
-            // Exit the program with code 1
-            return 1;
-        }
-
         printf("Define the y coordinate of the starting position: ");
-        // Store the starting position Y value at startPosY
+        // Scan for the starting Y position of the robot
         scanf("%d", &startPosY);
 
-        // If the starting position value is larger than 99 or smaller thant 0, exit the program
-        if (startPosY > MAX || startPosY < 0)
+        // While loop that runs when the starting position is not right
+        while (startPosX < 0 || startPosX > MAX || startPosY < 0 || startPosY > MAX)
         {
-            printf("Error: Starting position should be between 0 and 99 \n");
-            // Exit the program with code 1
-            return 1;
+            // Case where the starting position X is bad
+            if (startPosX > MAX || startPosX < 0)
+            {
+                printf("Error: Starting position should be between 0 and 99 \n");
+
+                printf("Define the x coordinate of the starting position: ");
+                // Scan for the new user input of starting position X
+                scanf("%d", &startPosX);
+            }
+
+            // Case where the starting position Y is bad
+            if (startPosY > MAX || startPosY < 0)
+            {
+                printf("Error: Starting position should be between 0 and 99 \n");
+
+                printf("Define the y coordinate of the starting position: ");
+                // Scan for the new user input of starting position y
+                scanf("%d", &startPosY);
+            }
         }
 
-        // Set the Robot's x position as the user's input
+        // Set the xposition of the robot as the user input
         robots[0].xpos = startPosX;
-        // Set the Robot's y position as the user's input
+        // Set the yposition of the robot as the user input
         robots[0].ypos = startPosY;
-        // Always start the Robot's starting direction as North
+        // Set the direction of the robot as the user input
         robots[0].dir = 0;
 
         printf("Your robot's settings have been defined as the following. xPos: %d yPos: %d dir: %d \n", robots[0].xpos, startPosY, robots[0].dir);
 
-        // A do-while loop to continue until the user decides not to
+        // Run the program unless the user enters x or the robot is out of grid
         do
         {
             printf("Enter your command: ");
-            // Save the user's order in the userRequest variable
+            // Scan for the user's request
             scanf(" %c", &userRequest);
 
-            // Check if the user's request is either m or t
-            if (userRequest != 'm' || userRequest != 't')
-            {
-                printf("Please type in a valid command. Exiting the program... \n");
-                // Return with 1 to exit the program as a failure
-                return 1;
-            }
-
-            // If the user's request is a m, move the robot
+            // Case where the user moves the robot
             if (userRequest == 'm')
             {
-                // Pass the address of the robot[0]
+                // Use the move function to move the robot's position
                 move(&robots[0]);
             }
-            // If the user's request is a t, turn the robot
+            // Case where the user turns the robot
             if (userRequest == 't')
             {
-                // Pass the address of the robot[0]
+                // Use the turn function to turn the robot's direction
                 turn(&robots[0]);
             }
-        } while (getchar() != 'x' && robots[0].xpos > 0 && robots[0].xpos < 99 && robots[0].ypos > 0 && robots[0].ypos < 99); // While the position of the robot is valid
-    } while (getchar() != EOF);                                                                                               // While the user does not end the program through EOF key
+            // Case where the user inputs x
+            if (userRequest == 'x')
+            {
+                // Break out of the loop
+                break;
+            }
+        } while (robots[0].xpos > 0 && robots[0].xpos < 99 && robots[0].ypos > 0 && robots[0].ypos < 99);
+    } while (getchar() != EOF); // Exit if end of file is pressed
 
-    // Return 0 to exit the program with a success
+    // Return 0 to exit the program successfully
     return 0;
 }
