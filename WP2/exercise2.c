@@ -35,7 +35,19 @@ int main(int argc, char *argv[])
     {
         printf("\n Post nr %d : %d", nr++, act_post->number);
         act_post = act_post->next;
-        printf("\n\n");
+    }
+
+    // Print new list
+    int newNode = 40;
+    head = add_first(head, newNode); // call the function to add a new record at the beginning
+
+    nr = 0; // reset the post number
+    act_post = head;
+    while (act_post!= NULL) // while the head is not null, it will print post number and its data
+    {
+        printf("\n Post nr %d : %d", nr++, act_post->number);
+        act_post = act_post->next; // move to the next node in the list
+        
     }
 
     // --- Free the allocated memory ---
@@ -45,30 +57,15 @@ int main(int argc, char *argv[])
         free(act_post);
     }
     
-
-    int newNode = 40;
-    head = add_first(head, newNode); // call the function to add a new record at the beginning
-
-    // Print new list
-    nr = 0; // reset the post number
-    act_post = head;
-    while (act_post!= NULL) // while the head is not null, it will print post number and its data
-    {
-        printf("\n Post nr %d : %d", nr++, act_post->number);
-        act_post = act_post->next; // move to the next node in the list
-        printf("\n\n");
-    }
-    
     return 0;
 
 }
 // ==== End of main ======================================
 
-
 REGTYPE *random_list(void)
 {
     int nr, i = 0;
-    REGTYPE *top, *old, *item;
+    REGTYPE *top = NULL, *old = NULL, *item;
 
     for (i = 0; i < MAX; i++)
     {
@@ -98,7 +95,7 @@ REGTYPE *random_list(void)
     }
     
 
-    return (top); //return pointer to the head of the list
+    return top; //return pointer to the head of the list
 }
 //==========================================================
 
