@@ -34,20 +34,20 @@ if (isatty(STDIN_FILENO))
     printf("Enter a string: ");
 }
 
-// read 20 characters from the user to soter it in inStr
+// read 20 characters from the user to store it in inStr
   fgets(inStr, MAXSTRLEN, stdin);
   printf("inStr:%s", inStr); 
   // if the user input does not end with a new line character, print a new line formatting purposes
   if (inStr[strlen(inStr) - 1] != '\n')
     printf("\n");
-
+  // calling the standerd method
   stdStrCpy(inStr, outStdStr);
   printf("outStdStr:%s", outStdStr);
 
     // if the user input does not end with a new line character, print a new line formatting purposes
   if (outStdStr[strlen(outStdStr) - 1] != '\n')
     printf("\n");
-
+  // calling the custom method
   myStrCpy(inStr, outMyStr);
   printf("outMyStr:%s", outMyStr);
   
