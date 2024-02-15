@@ -21,7 +21,7 @@ void loop()
   analogWrite(A1, sensorValue); // simulate voltage on multimeter
 
   // Print temperature to the serial port
-  Serial.println("Temperature: " + String(temperature) + " °C");
+  Serial.println("Temperature: " + String(temperature) + "°C");
 
   delay(500); // Set the periodicity in milliseconds
 }

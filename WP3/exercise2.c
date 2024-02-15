@@ -10,20 +10,22 @@
 #define BLUE_LED 9   // LED for low temperature deviation
 #define TMP36_PIN A1 // Temperature sensor (TMP36) pin
 
+unsigned OUTPUT, TMP36_PIN, LDR_PIN, HIGH, LOW;
+
 void setup()
 {
   Serial.begin(9600);
-  pinMode(RED_LED, OUTPUT);
-  pinMode(GREEN_LED, OUTPUT);
-  pinMode(BLUE_LED, OUTPUT);
+  pinMode(RED_LED, OUTPUT); // set red LED to output
+  pinMode(GREEN_LED, OUTPUT); // set green LED to output
+  pinMode(BLUE_LED, OUTPUT); // set blue LED to output
 }
 
 void loop()
 {
-  int temperature = readTemperature();                              // variable for temperature sensor
-  int lightIntensity = getLightIntensity();                         // variable for light intensity sensor
+  int temperature = readTemperature(); // variable for temperature sensor
+  int lightIntensity = getLightIntensity(); // variable for light intensity sensor
   int tempDependency = calculateTemperatureDependency(temperature); // variable for temperature dependency
-  int lightDependency = calculateLightDependency(lightIntensity);   // variable for light dependency
+  int lightDependency = calculateLightDependency(lightIntensity); // variable for light dependency
 
   Serial.print("light :");
   Serial.println(lightDependency);
@@ -48,7 +50,7 @@ int getLightIntensity()
   return analogRead(LDR_PIN);
 }
 
-// conditions for temperature dependencies
+// temperature dependencies
 int calculateTemperatureDependency(int temperature)
 {
   if (temperature <= -12)
@@ -69,7 +71,7 @@ int calculateTemperatureDependency(int temperature)
   }
 }
 
-// conditions for light dependencies
+// light dependencies
 int calculateLightDependency(int lightIntensity)
 {
   // Model simplification based on a linear map.
