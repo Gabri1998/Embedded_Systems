@@ -1,7 +1,7 @@
 // (C) Amanda Turquis,Ahmed Algabri,David Hong, group: 13 (2024)
 // Work package 3
 // Exercise 3b
-// Submission code: XXXXXX (provided by your TA-s)
+// Submission code: 021513 (provided by your TA-s)
 
 const byte ROWS = 4; //four rows
 const byte COLS = 4; //four columns
