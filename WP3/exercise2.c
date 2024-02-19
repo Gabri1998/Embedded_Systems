@@ -15,17 +15,17 @@ unsigned OUTPUT, TMP36_PIN, LDR_PIN, HIGH, LOW;
 void setup()
 {
   Serial.begin(9600);
-  pinMode(RED_LED, OUTPUT);   // set red LED to output
+  pinMode(RED_LED, OUTPUT); // set red LED to output
   pinMode(GREEN_LED, OUTPUT); // set green LED to output
-  pinMode(BLUE_LED, OUTPUT);  // set blue LED to output
+  pinMode(BLUE_LED, OUTPUT); // set blue LED to output
 }
 
 void loop()
 {
-  int temperature = readTemperature();                              // variable for temperature sensor
-  int lightIntensity = getLightIntensity();                         // variable for light intensity sensor
+  int temperature = readTemperature(); // variable for temperature sensor
+  int lightIntensity = getLightIntensity(); // variable for light intensity sensor
   int tempDependency = calculateTemperatureDependency(temperature); // variable for temperature dependency
-  int lightDependency = calculateLightDependency(lightIntensity);   // variable for light dependency
+  int lightDependency = calculateLightDependency(lightIntensity); // variable for light dependency
 
   Serial.print("light :");
   Serial.println(lightIntensity);
@@ -97,9 +97,9 @@ int calculateLightDependency(int lightIntensity)
 
 void updateLEDs(int tempDependency, int lightDependency)
 {
-  digitalWrite(RED_LED, LOW);   // sets red LED to LOW
+  digitalWrite(RED_LED, LOW); // sets red LED to LOW
   digitalWrite(GREEN_LED, LOW); // sets green LED to LOW
-  digitalWrite(BLUE_LED, LOW);  // sets blue LED to LOW
+  digitalWrite(BLUE_LED, LOW); // sets blue LED to LOW
 
   if (lightDependency == 0) // if light dependency returns 0
   {
@@ -116,9 +116,9 @@ void updateLEDs(int tempDependency, int lightDependency)
   {
     if (tempDependency == 1) // it enter the second if statement and check if temp dependency returns 1
     {
-      digitalWrite(GREEN_LED, HIGH); // it set green LED to high, since the criteria is fullfilled
+      digitalWrite(GREEN_LED, HIGH); // it set green LED to high, since the criteria is fullfilled 
     }
-    else if (tempDependency == 0) // if temp dependency returns 0
+    else if (tempDependency == 0) // if temp dependency returns 0 
     {
       digitalWrite(BLUE_LED, HIGH); // it sets the blue led to high, since the temp is smaller then the criteria
     }
@@ -142,7 +142,7 @@ void updateLEDs(int tempDependency, int lightDependency)
       digitalWrite(RED_LED, HIGH); // it sets the red led to high, since the temp is higher then it should for the lightIntensity
     }
   }
-  else if (lightDependency == 3) // if lightDependency is equal to 3
+  else if (lightDependency == 3) // if lightDependency is equal to 3 
   {
     if (tempDependency == 3) // if tempDependency is equal to 3
     {
@@ -150,7 +150,7 @@ void updateLEDs(int tempDependency, int lightDependency)
     }
     else
     {
-      digitalWrite(BLUE_LED, HIGH); // else the temp is lower then the criteria and set the led to blue
+      digitalWrite(BLUE_LED, HIGH); // else the temp is lower then the criteria and set the led to blue 
     }
   }
 }
