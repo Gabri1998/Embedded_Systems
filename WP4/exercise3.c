@@ -1,7 +1,7 @@
 // (C) Amanda Turquis,Ahmed Algabri,David Hong, group: 13 (2024)
 // Work package 4
 // Exercise 3
-// Submission code: XXXXXX (provided by your TA-s)
+// Submission code: 4468947 (provided by your TA-s)
 
 // Include section (header files)
 #include <Adafruit_NeoPixel.h>
