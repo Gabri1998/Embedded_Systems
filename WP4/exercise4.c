@@ -1,77 +1,77 @@
 // (C) Amanda Turquis,Ahmed Algabri,David Hong, group: 13 (2024)
 // Work package 4
 // Exercise 4
-// Submission code: 021513 (provided by your TA-s)
+// Submission code: XXXXXX (provided by your TA-s)
 
 #include <stdio.h>
 
-// linear search
-int search_number(int number, int tab[], int size) {
-  // Loop through each element in the array
-  for (int i = 0; i < size; i++) {
-    // If the current element matches the number we're looking for
-    if (number == tab[i])
-      // Return the position (1-indexed) of the found number
-      return (i + 1);
-  }
-  // If the number is not found in the array, return -1
-  return -1;
-}
+// Function to search for a number in an array
+int search_number(int number, int tab[], int size);
 
-// Swap two elements in an array
-void swap(int* arr, int i, int j) {
-  // Store the first element in a temporary variable
-  int temp = arr[i];
-  // Swap the first element with the second
-  arr[i] = arr[j];
-  // Place the temporary (initial first element) into the second's position
-  arr[j] = temp;
-}
+// Function to sort an array using bubble sort
+void sort(int tab[], int size);
 
-// Print all elements of an array, separated by dashes
-void printArray(int tab[], int size){
-  // Loop through each element in the array
-  for (short i = 0; i < size; i++) {
-    // Print the current element followed by a dash
-    printf("%d-", tab[i]);
+int main()
+{
+  // Array initialization
+  int test[] = {1, 2, 34, 5, 67, 3, 23, 12, 13, 10};
+  int arraySize = sizeof(test) / sizeof(test[0]);
+
+  // Test the search function
+  int searchNumber = 23;
+  int searchResult = search_number(searchNumber, test, arraySize);
+
+  // Output search result
+  if (searchResult != -1)
+  {
+    printf("%d is found at index %d\n", searchNumber, searchResult);
   }
-  // End the line after printing all elements
+  else
+  {
+    printf("%d is not found in the array\n", searchNumber);
+  }
+
+  // Test the sorting function
+  sort(test, arraySize);
+
+  // Print the sorted array
+  printf("Sorted array: ");
+  for (int i = 0; i < arraySize; i++)
+  {
+    printf("%d ", test[i]);
+  }
   printf("\n");
+
+  return 0;
 }
 
-// Sort an array using a simple sorting algorithm
-void sort(int tab[], int size){
-  // Loop through the array elements
-  for (int i = 0; i < size - 1; i++) {
-    // Nested loop to compare array elements
-    for (int j = i + 1; j < size - i - 1; j++) {
-      // If the current element is greater than the next
-      if (tab[i] > tab[j]) {
-        // Swap them to sort
-        swap(tab, i, j);
+// Function to search for a number in an array
+int search_number(int number, int tab[], int size)
+{
+  for (int i = 0; i < size; i++)
+  {
+    if (tab[i] == number)
+    {
+      return i; // Return the index of the first occurrence
+    }
+  }
+  return -1; // Number not found in the array
+}
+
+// Function to sort an array using bubble sort
+void sort(int tab[], int size)
+{
+  for (int i = 0; i < size - 1; i++)
+  {
+    for (int j = 0; j < size - i - 1; j++)
+    {
+      if (tab[j] > tab[j + 1])
+      {
+        // Swap the elements if they are in the wrong order
+        int temp = tab[j];
+        tab[j] = tab[j + 1];
+        tab[j + 1] = temp;
       }
     }
   }
-}
-
-// Main function to execute the program
-int main(void) {
-  // Initialize an array with some test numbers
-  int test[] = {1, 2, 34, 5, 67, 3, 23, 12, 13, 10};
-  // Calculate the size of the array
-  int size = sizeof(test) / sizeof(test[0]);
-  // Search for the number 34 in the array and print its position
-  printf("Search in position Number:%d\n", search_number(34, test, size));
-
-  // Sort the array
-  sort(test, size);
-  // Print the sorted array
-  printf("sorted array: ");
-  printArray(test, size);
-
-  // Search again for the number 34 in the sorted array and print its new position
-  printf("Search after sorting in position Number :%d\n", search_number(34, test, size));
-  
-  // End of the main function
-  return 0;
 }
