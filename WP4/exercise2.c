@@ -7,7 +7,7 @@
 
 // servo variables
 Servo SECONDS_SERVO;
-Servo SECONDS_SERVO;
+Servo MINUTES_SERVO;
 int sec_servo_pos = 0;
 int min_servo_pos = 0;
 
@@ -19,7 +19,7 @@ void setup()
     Serial.begin(9600);
     // attach servos to pins
     SECONDS_SERVO.attach(9);
-    SECONDS_SERVO.attach(10);
+    MINUTES_SERVO.attach(10);
     // configure timer 0
     setup_timer0();
 }
@@ -49,7 +49,7 @@ ISR(TIMER0_COMPA_vect)
     cli();   // disable interrupts
     count++; // increment count
     // if 1000 ms have passed, update the servos
-    if (counter % 1000 == 0)
+    if (count % 1000 == 0)
     {
         Serial.print("Timer: ");
         Serial.println((String)(count / 1000) + " seconds"); // print the time in seconds
@@ -57,8 +57,8 @@ ISR(TIMER0_COMPA_vect)
         SECONDS_SERVO.write(sec_servo_pos);                  // write the angle to the servo
         Serial.print("Servo angle: ");
         Serial.println((String)sec_servo_pos + " degrees"); // print the seconds servo angle
-        min_servo_pos = ((count / 100060) % 60) * 3;           // calculate the angle for the minutes servo
-        minutes_servo.write(min_servo_pos);                 // write the angle to the servo
+        min_servo_pos = ((count / 100060) % 60) * 3;        // calculate the angle for the minutes servo
+        MINUTES_SERVO.write(min_servo_pos);                 // write the angle to the servo
     }
     sei(); // enable interrupts
 }
