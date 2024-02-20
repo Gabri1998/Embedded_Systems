@@ -3,94 +3,68 @@
 // Exercise 3
 // Submission code: 4468947 (provided by your TA-s)
 
-// Include section (header files)
 #include <Adafruit_NeoPixel.h>
 
-// Define section
-#define PIN 6          // Pin connected to the NeoPixel ring
-#define NUMPIXELS 12   // Number of NeoPixel LEDs
-#define RED_LED_PIN 13 // Pin for the red LED
+// define number of LEDs and pin number
+#define NUM_LEDS 13
+#define NUM_PIN 2
 
-// Settings for the NEO_PIXEL Ring
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+// define the neopixel strip
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, NUM_PIN, NEO_GRB + NEO_KHZ800);
 
-// Variable declarations
-const int temperatureSensorPin = A0; // Analog pin for the temperature sensor
-const int redThreshold = 100;        // Threshold for turning on the red LED
-
-// Initial setup for the arduino
 void setup()
 {
-    strip.begin();
-    strip.show(); // Initialize all pixels to 'off'
-
-    // Set the I/O settings
-    pinMode(RED_LED_PIN, OUTPUT);   // Set LED Pin as output
-    digitalWrite(RED_LED_PIN, LOW); // Initiate with the LED off
-
-    // Initialize the serial communication
-    Serial.begin(9600);
-
-    // Set up periodic measurement using Timer1
-    noInterrupts(); // Disable interrupts
-    TCCR1A = 0;     // Reset Timer1 control registers
-    TCCR1B = 0;     // Set TCCR1B as 0
-    TCNT1 = 0;      // Reset the counter
-
-    // Set prescaler to 256, Timer1 will overflow every 1 second
-    TCCR1B |= (1 << CS12);
-
-    // Enable Timer1 overflow interrupt
-    TIMSK1 |= (1 << TOIE1);
-    interrupts(); // Enable interrupts
+    Serial.begin(9600);  // initialize serial communication
+    pinMode(13, OUTPUT); // initialize digital pin 12 as an output
+    setup_timer1();      // initialize timer1
+    strip.begin();       // initialize neopixel strip
 }
 
+void setup_timer1()
+{
+    cli();
+    TCCR1A = 0; // set entire TCCR1A register to 0
+    TCCR1B = 0; // same for TCCR1B
+    TCNT1 = 0;  // initialize counter value to 0
+
+    OCR1A = 15624;                       // set compare match register for 1hz increments
+    TCCR1B |= (1 << WGM12);              // turn on CTC mode
+    TCCR1B |= (1 << CS12) | (1 << CS10); // set CS10 and CS12 bits for 1024 prescaler
+    TIMSK1 |= (1 << OCIE1A);             // enable timer compare interrupt
+    sei();
+}
+
+// unused, because we are using interrupts instead
 void loop()
 {
-    // Main loop (empty as we're using interrupts)
 }
 
-// Interrupts routine settings
-ISR(TIMER1_OVF_vect)
+// interrupt service routine for timer1
+ISR(TIMER1_COMPA_vect)
 {
-    // Timer1 overflow interrupt, called every 1 second
+    cli();                       // stop interrupts
+    float temp = analogRead(A0); // read analog value from A0
+                                 // temp = (temp5 * 5.0) / 1000; // convert to millivolts
+                                 // temp = (temp-500)/10; // convert to degrees celcius
+    temp = map(((analogRead(A0) - 20) * 3.04), 0, 1023, -40, 125);
+    Serial.println(temp); // print temperature to serial monitor
+    strip.clear();        // clear the neopixel strip
 
-    // Read the sensor value
-    int sensorValue = analogRead(temperatureSensorPin);
+    // fill the neopixel strip with red LEDs, the number of LEDs is proportional to the temperature
+    // each LED represents 5 degrees celcius
+    strip.fill(strip.Color(255, 0, 0), 0, temp / 5);
+    strip.show(); // show the neopixel strip
 
-    // Map the sensor value to the number of NeoPixel LEDs
-    int numPixelsToLight = map(sensorValue, 0, 1023, 0, NUMPIXELS);
-
-    // Display the value on NeoPixel ring
-    displayNeoPixels(numPixelsToLight);
-
-    // Check if all NeoPixel LEDs are lit
-    if (numPixelsToLight == NUMPIXELS)
+    // if all LEDs are red, turn on the LED on digital pin 12
+    uint32_t lastLED = strip.getPixelColor(11); // get the color of the last LED
+    if (lastLED == strip.Color(255, 0, 0))
     {
-        digitalWrite(RED_LED_PIN, HIGH); // Turn on the red LED
+        digitalWrite(13, HIGH);
     }
     else
     {
-        digitalWrite(RED_LED_PIN, LOW); // Turn off the red LED
+        // if not all LEDs are red, turn off the LED on digital pin 12
+        digitalWrite(13, LOW);
     }
-}
-
-// Change the neo pixel rings setting
-void displayNeoPixels(int numPixels)
-{
-    // Display the value on NeoPixel ring
-    for (int i = 0; i < NUMPIXELS; i++)
-    {
-        // Turn on the neo pixel ring
-        if (i < numPixels)
-        {
-            strip.setPixelColor(i, strip.Color(0, 255, 0)); // Green color for lit pixels
-        }
-        // Turn off the neo pixel ring
-        else
-        {
-            strip.setPixelColor(i, strip.Color(0, 0, 0)); // Turn off unlit pixels
-        }
-    }
-    strip.show(); // Update NeoPixel ring
+    sei();
 }
