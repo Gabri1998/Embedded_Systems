@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/amandaturquis/Documents/DIT633/Embedded_Systems/WP4",
+      "program": "/Users/amandaturquis/Documents/DIT633/Embedded_Systems/WP4/build/Debug/outDebug"
+    }
+  ]
+}
