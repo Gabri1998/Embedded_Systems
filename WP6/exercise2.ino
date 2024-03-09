@@ -1,5 +1,6 @@
 // ultrasonic sensor pins
-#define SIG    7
+#define SIG    11
+#define echoPin    12
 #define Speaker    9
 #define led1    2
 #define led2    3
@@ -36,16 +37,16 @@ void loop()
 }
 
 float readDistance(){
-  //reset trigger
+
   digitalWrite(SIG, LOW);
   delay(2);
   digitalWrite(SIG, HIGH);
   delay(10);
   digitalWrite(SIG, LOW);
-  pinMode(SIG, INPUT);
-  float duration = pulseIn(SIG, HIGH);
-  float distance = duration * 0.034/2;
+  float duration = pulseIn(echoPin, HIGH);
+  float distance = duration*0.034/2;
   return distance;
+  
 }
 
 void setLeds(int distance){

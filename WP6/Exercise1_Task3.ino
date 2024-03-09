@@ -82,7 +82,7 @@ void loop()
    /* for Simulation untill here*/
       Serial.print("Error: ");
       Serial.println(error);
-    delay(1000);
+    delay(500);
    
     
     
